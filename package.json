@@ -1,0 +1,27 @@
+{
+  "name": "resourcely",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha -r ts-node/register --ui tdd --exit tests/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mukeshgurpude/resourcely-backend.git"
+  },
+  "author": "@mukeshgurpude",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mukeshgurpude/resourcely-backend/issues"
+  },
+  "homepage": "https://github.com/mukeshgurpude/resourcely-backend#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.15",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2"
+  }
+}
