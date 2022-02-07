@@ -1,6 +1,6 @@
 {
   "name": "resourcely",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "dist/app.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "prebuild": "npm run lint:fix",
     "start": "tsc && node dist/app.js",
     "test": "mocha -r ts-node/register --ui tdd --exit tests/*.{js,ts}",
-    "test:watch": "mocha -r ts-node/register --ui tdd --exit -w tests/*.{js,ts}",
+    "test:watch": "mocha -r ts-node/register --ui tdd --recursive --watch tests/*.ts",
     "test:coverage": "nyc mocha -r ts-node/register --ui tdd --exit tests/*.{js,ts}"
   },
   "repository": {

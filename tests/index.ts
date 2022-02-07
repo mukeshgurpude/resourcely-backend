@@ -12,7 +12,7 @@ suite('Server sets up successfully', () => {
       .then(res => {
         assert.ok(res)
         assert.strictEqual(res.status, 200)
-        assert.strictEqual(res.text, 'Server is running')
+        assert.strictEqual(res.text, 'Ok')
       })
       .then(done)
       .catch(done)
