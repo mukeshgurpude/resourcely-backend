@@ -12,7 +12,7 @@ app.use(express.text())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-app.use('/api', apiRouter)
+app.use('/api/v1', apiRouter)
 app.get('/status', (req, res) => {
   res.status(200).send('Ok')
 })
