@@ -2,7 +2,6 @@
   "name": "resourcely",
   "version": "0.0.3",
   "description": "",
-  "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
     "dev": "nodemon src/server.ts",

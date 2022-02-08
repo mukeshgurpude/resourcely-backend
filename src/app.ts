@@ -1,5 +1,6 @@
 import express from 'express'
 import helmet from 'helmet'
+import apiRouter from './routes'
 import { config } from 'dotenv'
 
 config()
@@ -11,6 +12,7 @@ app.use(express.text())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+app.use('/api', apiRouter)
 app.get('/status', (req, res) => {
   res.status(200).send('Ok')
 })
