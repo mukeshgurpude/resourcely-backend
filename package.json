@@ -2,14 +2,14 @@
   "name": "resourcely",
   "version": "0.0.3",
   "description": "",
-  "main": "dist/app.js",
+  "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
-    "dev": "nodemon src/app.ts",
+    "dev": "nodemon src/server.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "prebuild": "npm run lint:fix",
-    "start": "tsc && node dist/app.js",
+    "start": "tsc && node dist/server.js",
     "test": "mocha -r ts-node/register --ui tdd --exit tests/*.{js,ts}",
     "test:watch": "mocha -r ts-node/register --ui tdd --recursive --watch tests/*.ts",
     "test:coverage": "nyc mocha -r ts-node/register --ui tdd --exit tests/*.{js,ts}"
