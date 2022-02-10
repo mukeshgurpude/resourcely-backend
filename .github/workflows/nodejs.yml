@@ -1,0 +1,19 @@
+name: Test app
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run test suites
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        uses: npm ci
+      - name: Run tests with coverage
+        run: npm run test:coverage
