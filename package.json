@@ -1,17 +1,17 @@
 {
   "name": "resourcely",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "scripts": {
-    "build": "tsc",
-    "dev": "nodemon src/server.ts",
+    "build": "tsc && tsc-alias",
+    "dev": "nodemon -r tsconfig-paths/register src/server.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "prebuild": "npm run lint:fix",
-    "start": "tsc && node dist/src/server.js",
-    "test": "mocha -r ts-node/register -r tsconfig-paths/register --ui tdd --exit tests/*.{js,ts}",
-    "test:coverage": "nyc mocha -r ts-node/register -r tsconfig-paths/register --ui tdd --exit tests/*.{js,ts}",
-    "test:watch": "mocha -r ts-node/register -r tsconfig-paths/register --ui tdd --recursive --watch tests/*.ts"
+    "start": "npm run build && node dist/src/server.js",
+    "test": "mocha --config .mocharc.json tests/*.{js,ts}",
+    "test:coverage": "nyc mocha --config .mocharc.json tests/*.{js,ts}",
+    "test:watch": "mocha --config .mocharc.json --watch tests/*.{js,ts}"
   },
   "repository": {
     "type": "git",
@@ -37,6 +37,7 @@
     "mocha": "^9.2.0",
     "nyc": "^15.1.0",
     "ts-node": "^10.5.0",
+    "tsc-alias": "^1.5.0",
     "tsconfig-paths": "^3.12.0",
     "typescript": "^4.5.5"
   },
