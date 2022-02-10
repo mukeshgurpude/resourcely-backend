@@ -2,6 +2,7 @@
 import app from '../src/app'
 import chai, { assert } from 'chai'
 import chaiHttp from 'chai-http'
+import BASE_PATHS from '../src/utils/base_paths'
 
 chai.use(chaiHttp)
 
@@ -18,7 +19,7 @@ suite('Check status of servers', () => {
     message: 'Server is up and running',
     text: 'Ok'
   }, {
-    path: '/api/v1/shortner/',
+    path: `/api/v1${BASE_PATHS.shortner}`,
     message: 'Url shortner is responding'
   }]
 
