@@ -14,7 +14,7 @@ urlRouter.route('/')
   .post((req, res) => {
     const { original_url, password } = req.body
     if (!original_url) {
-      return res.status(400).send('Missing original_url')
+      return res.status(400).json({error: 'Missing original_url'})
     }
     const hashed_password = password ? hash(password) : null
     const id = new Date().getTime().toString()
