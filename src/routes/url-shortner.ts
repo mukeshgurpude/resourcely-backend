@@ -14,7 +14,7 @@ urlRouter.route('/')
   .post((req, res) => {
     const { original_url, password } = req.body
     if (!original_url) {
-      res.status(400).send('Missing original_url')
+      return res.status(400).json({error: 'Missing original_url'})
     }
     const hashed_password = password ? hash(password) : null
     const id = new Date().getTime().toString()
@@ -42,7 +42,6 @@ urlRouter.get('/:code', (req, res) => {
   let allowed = false
   if (url.password === null) allowed = true
   else {
-    console.log(req.headers)
     const { password } = req.headers
     if (!password) return res.status(401).json({
       error: 'Missing password'
