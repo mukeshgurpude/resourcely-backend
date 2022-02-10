@@ -1,4 +1,6 @@
 # Resourcely
+[![Continuous Integration](https://github.com/mukeshgurpude/resourcely-backend/actions/workflows/test.yml/badge.svg)](https://github.com/mukeshgurpude/resourcely-backend/actions/workflows/test.yml)
+
 API for sharing media or data on the internet.
 
 ---
