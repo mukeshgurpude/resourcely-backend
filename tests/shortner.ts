@@ -15,6 +15,26 @@ const base_request = {
 
 chai.use(chaiHttp)
 suite('Url shortner tests', () => {
+  suite('Invalid requests', () => {
+    test('Malformed url shortening', async () => {
+      return chai.request(app)
+        .post(base_request.url)
+        .send({})
+        .then(res => {
+          assert.ok(res)
+          assert.strictEqual(res.status, 400)
+          assert.property(res.body, 'error')
+        })
+    })
+    test('Non-existent',async () => {
+      return chai.request(app)
+        .get(`${base_request.url}/non-existens`)
+        .then(res => {
+          assert.ok(res)
+          assert.isTrue(res.notFound)
+        })
+    })
+  })
   suite('Passwordless urls', () => {
     test('Able to shorten urls without encryption', async () => {
       return chai.request(app)
