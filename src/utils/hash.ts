@@ -8,6 +8,6 @@ export function hash(str: string) {
   return hashSync(str, salt)
 }
 
-export function compare(str: string, hash: string) {
-  return compareSync(str, hash)
+export function compare(str: string, hashed_password: string) {
+  return compareSync(str, hashed_password)
 }
