@@ -22,7 +22,7 @@ suite('Url shortner tests', () => {
         .send({})
         .then(res => {
           assert.ok(res)
-          assert.strictEqual(res.status, 400)
+          assert.isTrue(res.badRequest)
           assert.property(res.body, 'error')
         })
     })
@@ -49,14 +49,10 @@ suite('Url shortner tests', () => {
     })
     test('Get correct responses for passwordless urls',async () => {
       const requests = [
-        base_request, {
-          ...base_request,
-          status: 302,
-          mode: 'redirect'
-        }, {
-          ...base_request,
-          mode: 'text'
-        }]
+        base_request,
+        {...base_request, status: 302, mode: 'redirect'},
+        {...base_request, mode: 'text'}
+      ]
       return Promise.all(
         requests.map(async request => {
           return chai.request(app)
@@ -89,7 +85,7 @@ suite('Url shortner tests', () => {
       return chai.request(app)
         .get(`${base_request.url}/${shortcode2}`)
         .then(res => {
-          assert.equal(res.status, 401)
+          assert.isTrue(res.unauthorized)
         })
     })
     test('Handles wrong password', async () => {
@@ -98,7 +94,7 @@ suite('Url shortner tests', () => {
         .set('password', 'wrong_password')
         .then(res => {
           assert.ok(res)
-          assert.equal(res.status, 401)
+          assert.isTrue(res.unauthorized)
         })
     })
     test('Sends data for correct password', async () => {
