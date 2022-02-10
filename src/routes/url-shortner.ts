@@ -42,7 +42,6 @@ urlRouter.get('/:code', (req, res) => {
   let allowed = false
   if (url.password === null) allowed = true
   else {
-    console.log(req.headers)
     const { password } = req.headers
     if (!password) return res.status(401).json({
       error: 'Missing password'
