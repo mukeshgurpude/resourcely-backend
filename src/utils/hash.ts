@@ -1,7 +1,10 @@
 import { hashSync, compareSync, genSaltSync } from 'bcrypt'
 
+/* istanbul ignore next */
+const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS) || 10
+
 export function hash(str: string) {
-  const salt = genSaltSync(parseInt(process.env.HASH_SALT_ROUNDS) ?? 10)
+  const salt = genSaltSync(SALT_ROUNDS)
   return hashSync(str, salt)
 }
 
