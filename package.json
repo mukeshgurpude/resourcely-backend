@@ -8,10 +8,10 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "prebuild": "npm run lint:fix",
-    "start": "tsc && node dist/server.js",
-    "test": "mocha -r ts-node/register --ui tdd --exit tests/*.{js,ts}",
-    "test:coverage": "nyc mocha -r ts-node/register --ui tdd --exit tests/*.{js,ts}",
-    "test:watch": "mocha -r ts-node/register --ui tdd --recursive --watch tests/*.ts"
+    "start": "tsc && node dist/src/server.js",
+    "test": "mocha -r ts-node/register -r tsconfig-paths/register --ui tdd --exit tests/*.{js,ts}",
+    "test:coverage": "nyc mocha -r ts-node/register -r tsconfig-paths/register --ui tdd --exit tests/*.{js,ts}",
+    "test:watch": "mocha -r ts-node/register -r tsconfig-paths/register --ui tdd --recursive --watch tests/*.ts"
   },
   "repository": {
     "type": "git",
@@ -37,6 +37,7 @@
     "mocha": "^9.2.0",
     "nyc": "^15.1.0",
     "ts-node": "^10.5.0",
+    "tsconfig-paths": "^3.12.0",
     "typescript": "^4.5.5"
   },
   "dependencies": {

@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import UrlModel from '../../types/url'
-import { hash, compare } from '../utils/hash'
+import { hash, compare } from '@utils/hash'
+import UrlModel from '@ctypes/url'
 
 // TODO: Temparily use array to store the data
 const urls: UrlModel[] = []

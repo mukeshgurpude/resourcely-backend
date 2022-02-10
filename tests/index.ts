@@ -1,8 +1,7 @@
-// TODO: Setup module aliases
-import app from '../src/app'
 import chai, { assert } from 'chai'
 import chaiHttp from 'chai-http'
-import BASE_PATHS from '../src/utils/base_paths'
+import app from '@src/app'
+import BASE_PATHS from '@utils/base_paths'
 
 chai.use(chaiHttp)
 

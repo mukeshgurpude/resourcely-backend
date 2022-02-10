@@ -1,7 +1,7 @@
-import BASE_PATHS from '../src/utils/base_paths'
-import app from '../src/app'
 import chai, { assert } from 'chai'
 import chaiHttp from 'chai-http'
+import BASE_PATHS from '@utils/base_paths'
+import app from '@src/app'
 
 const original_url = 'http://localhost:8000'
 const password = '12345678'
