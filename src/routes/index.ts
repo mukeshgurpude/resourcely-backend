@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import urlRouter from './url-shortner'
-import BASE_PATHS from '../utils/base_paths'
+import BASE_PATHS from '@utils/base_paths'
 
 const apiRouter = Router()
 

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/mocharc",
+  "exit": true,
+  "recursive": true,
+  "require": [
+    "tsconfig-paths/register",
+    "ts-node/register"
+  ],
+  "ui": "tdd",
+  "watch-files": [
+    "src/**/*.ts",
+    "tests/**/*.ts"
+  ]
+}

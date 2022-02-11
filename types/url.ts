@@ -1,4 +1,4 @@
-type UrlModel = {
+interface UrlModel {
   _id: string
   original_url: string
   password?: string

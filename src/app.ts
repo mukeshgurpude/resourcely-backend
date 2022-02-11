@@ -1,6 +1,6 @@
 import express from 'express'
 import helmet from 'helmet'
-import apiRouter from './routes'
+import apiRouter from '@routes/index'
 import { config } from 'dotenv'
 
 config()
