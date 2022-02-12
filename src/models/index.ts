@@ -1,4 +1,4 @@
-import { connect } from 'mongoose'
+import { connect, connection } from 'mongoose'
 import { MongoMemoryServer } from 'mongodb-memory-server'
 import Url from './url'
 
@@ -6,7 +6,10 @@ import Url from './url'
 export async function mock_db() {
   return MongoMemoryServer.create()
     .then(async (instance) => {
-      await connect(instance.getUri(), {dbName: 'resourcely-test'})
+      // Connect only if not already connected
+      if (connection.readyState === 0) {
+        await connect(instance.getUri(), {dbName: 'resourcely-test'})
+      }
     })
 }
 
