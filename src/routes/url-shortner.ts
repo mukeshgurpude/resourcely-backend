@@ -23,7 +23,7 @@ urlRouter.route('/')
       password: hashed_password,
       original_url,
       shortcode: id,
-      expires_at: new Date(new Date() + expire_time)
+      expires_at: new Date(new Date().getTime() + expire_time)
     }).then(response => {
       return res.status(201).json({
         original_url: response.original_url,
