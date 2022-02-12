@@ -6,8 +6,7 @@ function schema_factory<Type>(definition: SchemaDefinition, options: SchemaOptio
   const schema = new Schema<Ibase | Type>({
     expires_at: {
       type: Date,
-      default: Date.now,
-      expires: '5m'
+      default: Date.now
     },
     shortcode: { type: String, required: true },
     ...definition
@@ -16,7 +15,7 @@ function schema_factory<Type>(definition: SchemaDefinition, options: SchemaOptio
     ...options
   })
   schema.index({ expires_at: 1 }, {expireAfterSeconds: 0})
-  schema.index({shortcode: 1})
+  schema.index({shortcode: 1}, {unique: true})
   return schema
 }
 
