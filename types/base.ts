@@ -1,6 +1,6 @@
 interface IBase {
   shortcode: string
-  expires_at: number
+  expires_at: Date
 }
 
 export default IBase
