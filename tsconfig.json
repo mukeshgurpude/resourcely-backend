@@ -8,9 +8,10 @@
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["./src/*"],
-      "@routes/*": ["./src/routes/*"],
       "@ctypes/*": ["./types/*"],
+      "@models": ["./src/models"],
+      "@routes/*": ["./src/routes/*"],
+      "@src/*": ["./src/*"],
       "@utils/*": ["./src/utils/*"],
     }
   },

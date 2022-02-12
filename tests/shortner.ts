@@ -1,7 +1,9 @@
+import { before } from 'mocha'
 import chai, { assert } from 'chai'
 import chaiHttp from 'chai-http'
 import BASE_PATHS from '@utils/base_paths'
 import app from '@src/app'
+import { mock_db } from '@models'
 
 const original_url = 'http://localhost:8000'
 const password = '12345678'
@@ -12,9 +14,11 @@ const base_request = {
   status: 200,
   mode: 'json'
 }
-
 chai.use(chaiHttp)
 suite('Url shortner tests', () => {
+  before(() => {
+    return mock_db()
+  })
   suite('Invalid requests', () => {
     test('Malformed url shortening', async () => {
       return chai.request(app)
