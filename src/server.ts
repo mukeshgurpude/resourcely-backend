@@ -10,10 +10,6 @@ connect_db()
       console.log(`Server is running on port ${this.address().port}`)
     })
   })
-  .catch(() => {
-    // Directly exit if we can't connect to Database
-    process.exit(1)
-  })
 
 export default async function connect_db() {
   return connect(process.env.MONGO_URL)
