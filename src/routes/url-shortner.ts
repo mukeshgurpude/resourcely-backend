@@ -1,9 +1,9 @@
 import { Router } from 'express'
 import { hash, compare } from '@utils/hash'
-import UrlModel from '@ctypes/url'
+import IUrl from '@ctypes/url'
 
 // TODO: Temparily use array to store the data
-const urls: UrlModel[] = []
+const urls: IUrl[] = []
 
 const urlRouter = Router()
 
