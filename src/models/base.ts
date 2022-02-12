@@ -8,6 +8,7 @@ function schema_factory<Type>(definition: SchemaDefinition, options: SchemaOptio
       type: Date,
       default: Date.now
     },
+    password: String,
     shortcode: { type: String, required: true },
     ...definition
   }, {

@@ -1,6 +1,7 @@
 interface IBase {
-  shortcode: string
   expires_at: Date
+  password: string
+  shortcode: string
 }
 
 export default IBase

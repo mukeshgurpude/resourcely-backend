@@ -1,9 +1,7 @@
 import { Router } from 'express'
 import { hash, compare } from '@utils/hash'
-import IUrl from '@ctypes/url'
+import { UrlModel } from '@models'
 
-// TODO: Temparily use array to store the data
-const urls: IUrl[] = []
 
 const urlRouter = Router()
 
@@ -18,22 +16,26 @@ urlRouter.route('/')
     }
     const hashed_password = password ? hash(password) : null
     const id = new Date().getTime().toString()
-    urls.push({
+    return UrlModel.create({
       password: hashed_password,
       original_url,
       shortcode: id,
       expires_at: new Date()
-    })
-    return res.status(201).json({
-      original_url,
-      shortcode: id
+    }).then(response => {
+      return res.status(201).json({
+        original_url: response.original_url,
+        shortcode: response.shortcode
+      })
+    }).catch(err => {
+      return res.status(500).json({error: err})
     })
   })
 
-urlRouter.get('/:code', (req, res) => {
+urlRouter.get('/:code', async (req, res) => {
   const { code } = req.params
   const { mode } = req.query
-  const url = urls.find(u => u.shortcode === code)
+
+  const url = await UrlModel.findOne({shortcode: code})
   if (!url) {
     return res.status(404).json({
       error: 'URL not found'
@@ -65,7 +67,6 @@ urlRouter.get('/:code', (req, res) => {
   return res.status(401).json({
     error: 'Wrong password'
   })
-
 })
 
 export default urlRouter
