@@ -19,10 +19,10 @@ urlRouter.route('/')
     const hashed_password = password ? hash(password) : null
     const id = new Date().getTime().toString()
     urls.push({
-      _id: id,
       password: hashed_password,
       original_url,
-      shortcode: id
+      shortcode: id,
+      expires_at: Date.now() + 300
     })
     return res.status(201).json({
       original_url,

@@ -1,8 +1,8 @@
-interface UrlModel {
-  _id: string
+import IBase from './base'
+
+interface UrlModel extends IBase {
   original_url: string
   password?: string
-  shortcode: string
 }
 
 export default UrlModel
