@@ -1,4 +1,5 @@
 import { connect } from 'mongoose'
+import { MongoMemoryServer } from 'mongodb-memory-server'
 import Url from './url'
 
 export default async function connect_db() {
@@ -11,4 +12,12 @@ export default async function connect_db() {
       process.exit(1)
     })
 }
+
+export async function mock_db() {
+  return MongoMemoryServer.create()
+    .then(async (instance) => {
+      await connect(instance.getUri(), {dbName: 'resourcely-test'})
+    })
+}
+
 export { Url as UrlModel }
