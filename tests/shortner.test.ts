@@ -16,9 +16,7 @@ const base_request = {
 }
 chai.use(chaiHttp)
 suite('Url shortner tests', () => {
-  before(() => {
-    return mock_db()
-  })
+  before(mock_db)
   suite('Invalid requests', () => {
     test('Malformed url shortening', async () => {
       return chai.request(app)
