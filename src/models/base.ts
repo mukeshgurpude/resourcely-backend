@@ -15,8 +15,8 @@ function schema_factory<Type>(definition: SchemaDefinition, options: SchemaOptio
     timestamps: true,
     ...options
   })
-  schema.index({ expires_at: 1 }, {expireAfterSeconds: 0})
-  schema.index({shortcode: 1}, {unique: true})
+  schema.index({ expires_at: 1 }, { expireAfterSeconds: 0 })
+  schema.index({ shortcode: 1 }, { unique: true })
   return schema
 }
 
