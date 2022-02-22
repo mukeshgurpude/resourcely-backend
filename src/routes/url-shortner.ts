@@ -1,7 +1,6 @@
 import { Router } from 'express'
 import { hash, compare } from '@utils/hash'
 import { UrlModel } from '@models'
-import generate_id from '@utils/random'
 
 
 const urlRouter = Router()
@@ -18,12 +17,10 @@ urlRouter.route('/')
       return res.status(400).json({error: 'Missing original_url'})
     }
     const hashed_password = password ? hash(password) : null
-    const id = generate_id()
 
     return UrlModel.create({
       password: hashed_password,
       original_url,
-      shortcode: id,
       expires_at: new Date(new Date().getTime() + expire_time)
     }).then(response => {
       return res.status(201).json({
