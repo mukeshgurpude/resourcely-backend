@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { hash, compare } from '@utils/hash'
 import { UrlModel } from '@models'
+import generate_id from '@utils/random'
 
 
 const urlRouter = Router()
@@ -17,7 +18,7 @@ urlRouter.route('/')
       return res.status(400).json({error: 'Missing original_url'})
     }
     const hashed_password = password ? hash(password) : null
-    const id = new Date().getTime().toString()
+    const id = generate_id()
 
     return UrlModel.create({
       password: hashed_password,
@@ -53,7 +54,7 @@ urlRouter.get('/:code', async (req, res) => {
     })
     allowed = compare((password as string), url.password)
   }
-  
+
   if (allowed) {
     switch(mode) {
     case 'redirect':
