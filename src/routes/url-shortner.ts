@@ -17,12 +17,10 @@ urlRouter.route('/')
       return res.status(400).json({error: 'Missing original_url'})
     }
     const hashed_password = password ? hash(password) : null
-    const id = new Date().getTime().toString()
 
     return UrlModel.create({
       password: hashed_password,
       original_url,
-      shortcode: id,
       expires_at: new Date(new Date().getTime() + expire_time)
     }).then(response => {
       return res.status(201).json({
@@ -53,7 +51,7 @@ urlRouter.get('/:code', async (req, res) => {
     })
     allowed = compare((password as string), url.password)
   }
-  
+
   if (allowed) {
     switch(mode) {
     case 'redirect':

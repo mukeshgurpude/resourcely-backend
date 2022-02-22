@@ -1,6 +1,6 @@
 {
   "name": "resourcely",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "",
   "scripts": {
     "build": "tsc && tsc-alias",
@@ -9,9 +9,9 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "prebuild": "npm run lint:fix",
     "start": "npm run build && node dist/src/server.js",
-    "test": "mocha --config .mocharc.json tests/*.{js,ts}",
-    "test:coverage": "nyc mocha --config .mocharc.json tests/*.{js,ts}",
-    "test:watch": "mocha --config .mocharc.json --watch tests/*.{js,ts}"
+    "test": "mocha --config .mocharc.json tests/*.test.{js,ts}",
+    "test:coverage": "nyc mocha --config .mocharc.json tests/*.test.{js,ts}",
+    "test:watch": "mocha --config .mocharc.json --watch tests/*.test.{js,ts}"
   },
   "repository": {
     "type": "git",
@@ -48,6 +48,7 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "helmet": "^5.0.2",
-    "mongoose": "^6.2.1"
+    "mongoose": "^6.2.1",
+    "nanoid": "^3.3.1"
   }
 }

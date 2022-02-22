@@ -1,7 +1,7 @@
 import chai, { assert } from 'chai'
 import chaiHttp from 'chai-http'
 import app from '@src/app'
-import BASE_PATHS from '@utils/base_paths'
+import { BASE_PATHS } from '@utils/constants'
 
 chai.use(chaiHttp)
 
