@@ -19,7 +19,7 @@ suite('Check status of servers', () => {
     text: 'Ok'
   }, {
     path: `/api/v1${BASE_PATHS.shortner}`,
-    message: 'Url shortner is responding'
+    message: 'Url shortener is responding'
   }]
 
   paths.forEach(p => {
