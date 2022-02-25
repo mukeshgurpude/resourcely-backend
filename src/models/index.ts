@@ -7,8 +7,8 @@ import Text from './text'
 export async function mock_db() {
   return MongoMemoryServer.create()
     .then(async (instance) => {
-      // Connect only if not already connected
-      if (connection.readyState === 0) {
+      /* istanbul ignore else */
+      if (connection.readyState === 0) { // Connect only if not already connected
         await connect(instance.getUri(), {dbName: 'resourcely-test'})
       }
     })
