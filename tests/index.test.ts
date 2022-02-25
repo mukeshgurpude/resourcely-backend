@@ -18,7 +18,7 @@ suite('Check status of servers', () => {
     message: 'Server is up and running',
     text: 'Ok'
   }, {
-    path: `/api/v1${BASE_PATHS.shortner}`,
+    path: `/api/v1${BASE_PATHS.shortener}`,
     message: 'Url shortener is responding'
   }]
 

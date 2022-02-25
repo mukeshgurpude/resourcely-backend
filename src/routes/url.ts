@@ -8,7 +8,7 @@ const urlRouter = Router()
 
 urlRouter.route('/')
   .get((req, res) => {
-    res.status(200).send('Url shortner function')
+    res.status(200).send('Url shortener function')
   })
   .post((req, res) => {
     const { original_url, password } = req.body
