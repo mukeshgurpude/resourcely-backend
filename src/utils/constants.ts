@@ -3,7 +3,8 @@ const BASE_PATHS = {
 }
 
 const SHORTCODE_PREFIXES = {
-  shortner: 'u'
+  url: 'u',
+  text: 't'
 }
 
 export { BASE_PATHS, SHORTCODE_PREFIXES }
