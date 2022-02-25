@@ -7,4 +7,7 @@ const SHORTCODE_PREFIXES = {
   text: 't'
 }
 
-export { BASE_PATHS, SHORTCODE_PREFIXES }
+// Expire after 5 minutes (5m * 60s * 1000ms)
+const EXPIRE_TIME = 1000*60*5
+
+export { BASE_PATHS, EXPIRE_TIME, SHORTCODE_PREFIXES }
