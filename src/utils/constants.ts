@@ -1,5 +1,6 @@
 const BASE_PATHS = {
-  shortener: '/shortener'
+  shortener: '/shortener',
+  text: '/text'
 }
 
 const SHORTCODE_PREFIXES = {
