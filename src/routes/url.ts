@@ -1,17 +1,16 @@
 import { Router } from 'express'
 import { hash, compare } from '@utils/hash'
 import { UrlModel } from '@models'
+import { EXPIRE_TIME } from '@utils/constants'
 
 
 const urlRouter = Router()
 
 urlRouter.route('/')
   .get((req, res) => {
-    res.status(200).send('Url shortner function')
+    res.status(200).send('Url shortener function')
   })
   .post((req, res) => {
-    // Expire after 5 minutes (5m * 60s * 1000ms)
-    const expire_time = 1000*60*5
     const { original_url, password } = req.body
     if (!original_url) {
       return res.status(400).json({error: 'Missing original_url'})
@@ -21,7 +20,7 @@ urlRouter.route('/')
     return UrlModel.create({
       password: hashed_password,
       original_url,
-      expires_at: new Date(new Date().getTime() + expire_time)
+      expires_at: new Date(new Date().getTime() + EXPIRE_TIME)
     }).then(response => {
       return res.status(201).json({
         original_url: response.original_url,

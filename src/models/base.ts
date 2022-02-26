@@ -3,7 +3,7 @@ import generate_id from '@utils/random'
 import Ibase from '@ctypes/base'
 
 
-function schema_factory<Type>(definition: SchemaDefinition, options: SchemaOptions = {}, prefix=''): Schema {
+function schema_factory<Type>(definition: SchemaDefinition, prefix: string, options: SchemaOptions = {}): Schema {
   const schema = new Schema<Ibase | Type>({
     expires_at: {
       type: Date,

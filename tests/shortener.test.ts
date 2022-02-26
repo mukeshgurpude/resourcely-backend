@@ -10,12 +10,12 @@ const password = '12345678'
 let shortcode1 !: string, shortcode2 !: string
 
 const base_request = {
-  url: `/api/v1${BASE_PATHS.shortner}`,
+  url: `/api/v1${BASE_PATHS.shortener}`,
   status: 200,
   mode: 'json'
 }
 chai.use(chaiHttp)
-suite('Url shortner tests', () => {
+suite('Url shortener tests', () => {
   before(mock_db)
   suite('Invalid requests', () => {
     test('Malformed url shortening', async () => {
@@ -28,9 +28,9 @@ suite('Url shortner tests', () => {
           assert.property(res.body, 'error')
         })
     })
-    test('Non-existent',async () => {
+    test('Non-existent', async () => {
       return chai.request(app)
-        .get(`${base_request.url}/non-existens`)
+        .get(`${base_request.url}/non-existent`)
         .then(res => {
           assert.ok(res)
           assert.isTrue(res.notFound)
@@ -40,7 +40,7 @@ suite('Url shortner tests', () => {
   suite('Passwordless urls', () => {
     test('Able to shorten urls without encryption', async () => {
       return chai.request(app)
-        .post(`/api/v1${BASE_PATHS.shortner}`)
+        .post(base_request.url)
         .send({ original_url })
         .then(res => {
           assert.ok(res)
@@ -74,7 +74,7 @@ suite('Url shortner tests', () => {
   suite('Encrypted urls', () => {
     test('Able to shorten urls with password', async () => {
       return chai.request(app)
-        .post(`/api/v1${BASE_PATHS.shortner}`)
+        .post(base_request.url)
         .send({ original_url, password })
         .then(res => {
           assert.ok(res)
