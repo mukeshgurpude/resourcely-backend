@@ -28,9 +28,9 @@ suite('Url shortener tests', () => {
           assert.property(res.body, 'error')
         })
     })
-    test('Non-existent',async () => {
+    test('Non-existent', async () => {
       return chai.request(app)
-        .get(`${base_request.url}/non-existens`)
+        .get(`${base_request.url}/non-existent`)
         .then(res => {
           assert.ok(res)
           assert.isTrue(res.notFound)
