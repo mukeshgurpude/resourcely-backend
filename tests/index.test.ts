@@ -17,10 +17,12 @@ suite('Check status of servers', () => {
     path: '/status',
     message: 'Server is up and running',
     text: 'Ok'
-  }, {
-    path: `/api/v1${BASE_PATHS.shortener}`,
-    message: 'Url shortener is responding'
-  }]
+  }, ...Object.keys(BASE_PATHS).map(path => {
+    return {
+      path: `/api/v1${BASE_PATHS[path]}`,
+      message: `${path} is up and running`
+    }
+  })]
 
   paths.forEach(p => {
     test(p.message, async () => {
