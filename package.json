@@ -1,6 +1,6 @@
 {
   "name": "resourcely",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "",
   "scripts": {
     "build": "tsc && tsc-alias",
