@@ -2,18 +2,20 @@ import { Router } from 'express'
 import { hash, compare } from '@utils/hash'
 import { TextModel } from '@models'
 import { EXPIRE_TIME } from '@utils/constants'
+import { save_metadata } from '@src/middlewares/metadata'
 
 const textRouter = Router()
 
 textRouter.route('/')
   .get((_, res) => res.status(200).end())
-  .post((req, res) => {
+  .post(save_metadata, (req, res) => {
     const { language, text, password } = req.body
     if (!text) {
       return res.status(400).json({error: 'Missing text content'})
     }
     const hashed_password = password ? hash(password) : null
     return TextModel.create({
+      ...res.locals.resource_metadata,
       password: hashed_password,
       text, language,
       expires_at: new Date(new Date().getTime() + EXPIRE_TIME)
