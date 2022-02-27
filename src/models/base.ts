@@ -5,12 +5,11 @@ import Ibase from '@ctypes/base'
 
 function schema_factory<Type>(definition: SchemaDefinition, prefix: string, options: SchemaOptions = {}): Schema {
   const schema = new Schema<Ibase | Type>({
-    expires_at: {
-      type: Date,
-      default: Date.now
-    },
+    description: String,
+    expires_at: { type: Date, default: Date.now },
     password: String,
     shortcode: { type: String, required: true },
+    title: { type: String, required: true },
     ...definition
   }, {
     timestamps: true,
