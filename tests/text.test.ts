@@ -13,7 +13,8 @@ if __name__ == '__main__':
 `
 const language = 'python'
 const password = '12345678'
-const base_request = { url: `/api/v1${BASE_PATHS.text}`, status: 200}
+const title = 'Sample title'
+const base_request = { url: `/api/v1${BASE_PATHS.text}`, status: 200 }
 
 chai.use(chaiHttp)
 
@@ -23,11 +24,19 @@ suite('Text content tests', () => {
     test('Malformed text content', async () => {
       return chai.request(app)
         .post(base_request.url)
-        .send({})
+        .send({ title })
         .then(res => {
           assert.ok(res)
           assert.isTrue(res.badRequest)
           assert.property(res.body, 'error')
+        })
+    })
+    test('Title is required', async () => {
+      return chai.request(app)
+        .post(base_request.url)
+        .send({ text })
+        .then(res => {
+          assert.isTrue(res.badRequest, 'Should reject requests with no title')
         })
     })
     test('Non existent resource', async () => {
@@ -44,7 +53,7 @@ suite('Text content tests', () => {
     test('Able to upload text without encryption', async () => {
       return chai.request(app)
         .post(base_request.url)
-        .send({ text, language })
+        .send({ text, language, title })
         .then(res => {
           assert.ok(res)
           assert.property(res.body, 'shortcode')
@@ -67,7 +76,7 @@ suite('Text content tests', () => {
     test('Able to upload text with encryption', async () => {
       return chai.request(app)
         .post(base_request.url)
-        .send({ text, language, password })
+        .send({ text, language, password, title })
         .then(res => {
           assert.ok(res)
           assert.property(res.body, 'shortcode')

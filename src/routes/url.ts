@@ -18,6 +18,7 @@ urlRouter.route('/')
     const hashed_password = password ? hash(password) : null
 
     return UrlModel.create({
+      ...res.locals.resource_metadata,
       password: hashed_password,
       original_url,
       expires_at: new Date(new Date().getTime() + EXPIRE_TIME)
