@@ -7,7 +7,7 @@ config()
 
 const app = express()
 
-/* istanbul ignore next */
+/* istanbul ignore if */
 if (process.env.NODE_ENV === 'production') app.use(helmet())
 app.use(express.text())
 app.use(express.json())
