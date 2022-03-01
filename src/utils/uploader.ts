@@ -18,10 +18,10 @@ const storage = diskStorage({
   filename: function(_, file, cb) {
     const { ext, name } = separate_extension(file.originalname)
     const timestamp = Date.now()
-    const id = generate_id()  // Random id, as to tackle potential collisions
+    const id = generate_id().replace('-', '_')    // Random id, as to tackle potential collisions
 
     // Format -> name-timestamp-id.ext --> Universally unique identifier
-    cb(null, `${name}-${timestamp}-${id}.${ext}`)
+    cb(null, `${name.replace('-', '_')}-${timestamp}-${id}.${ext}`)
   }
 })
 
