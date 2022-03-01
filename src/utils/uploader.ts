@@ -1,3 +1,5 @@
+/* See https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html */
+
 import multer, { diskStorage, FileFilterCallback } from 'multer'
 import { Request } from 'express'
 import { config } from 'dotenv'
@@ -27,7 +29,10 @@ const fileFilter: IFileFilter = function(_, file, cb) {
   cb(null, true)
 }
 
-const uploader = multer({ fileFilter, storage})
+const uploader = multer({ fileFilter, storage, limits: {
+  fileSize: parseInt(process.env.MAX_FILE_SIZE) || 1024*1024*5, // 5 MB
+  files: 1 // Only one file at a time
+}})
 export default uploader
 
 
