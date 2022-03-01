@@ -55,10 +55,26 @@ suite('Image uploader API', () => {
         .attach('image', 'tests/assets/test.png')
         .then(res => {
           assert.ok(res)
-          assert.isTrue(res.ok)
           assert.strictEqual(++initial, valid_uploads())
           assert.property(res.body, 'shortcode')
           shortcode = res.body.shortcode
+        })
+    })
+    test('File is served properly', async () => {
+      return chai.request(app)
+        .get(`/api/v1${BASE_PATHS.image}/${shortcode}`)
+        .then(res => {
+          assert.ok(res)
+          assert.strictEqual(res.type, 'image/png')
+        })
+    })
+    test('Metadata is rendered properly', async () => {
+      return chai.request(app)
+        .get(`/api/v1${BASE_PATHS.image}/${shortcode}?meta=true`)
+        .then(res => {
+          assert.ok(res)
+          assert.strictEqual(res.type, 'application/json')
+          assert.property(res.body, 'title')
         })
     })
   })
@@ -73,10 +89,36 @@ suite('Image uploader API', () => {
         .attach('image', 'tests/assets/test.png')
         .then(res => {
           assert.ok(res)
-          assert.isTrue(res.ok)
           assert.strictEqual(++initial, valid_uploads())
           assert.property(res.body, 'shortcode')
           shortcode = res.body.shortcode
+        })
+    })
+    test('File is protected', async () => {
+      return chai.request(app)
+        .get(`/api/v1${BASE_PATHS.image}/${shortcode}`)
+        .then(res => {
+          assert.ok(res)
+          assert.isTrue(res.unauthorized)
+        })
+    })
+    test('File is served properly', async () => {
+      return chai.request(app)
+        .get(`/api/v1${BASE_PATHS.image}/${shortcode}`)
+        .set('password', password)
+        .then(res => {
+          assert.ok(res)
+          assert.strictEqual(res.type, 'image/png')
+        })
+    })
+    test('Metadata is rendered properly', async () => {
+      return chai.request(app)
+        .get(`/api/v1${BASE_PATHS.image}/${shortcode}?meta=true`)
+        .set('password', password)
+        .then(res => {
+          assert.ok(res)
+          assert.strictEqual(res.type, 'application/json')
+          assert.property(res.body, 'title')
         })
     })
   })
