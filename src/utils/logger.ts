@@ -7,11 +7,11 @@ config()
 configure({
   appenders: {
     console: { type: 'console' },
-    file_logger: { type: 'file', filename: 'logs/log.log' }
+    file: { type: 'file', filename: 'logs/log.log' }
   },
   categories: {
-    default: { appenders: ['console'], level: 'ALL' },
-    file_logger: { appenders: ['file_logger'], level: 'ALL' }
+    default: { appenders: ['console', 'file'], level: 'ALL' },
+    file_logger: { appenders: ['file'], level: 'ALL' }
   }
 })
 
