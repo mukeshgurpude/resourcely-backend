@@ -8,20 +8,20 @@ import { Request } from 'express'
 import { config } from 'dotenv'
 import generate_id from './random'
 import separate_extension from './name'
-import { HARMFUL_EXTENSIONS, HARMFUL_MIMETYPES } from '@utils/constants'
+import { HARMFUL_EXTENSIONS, HARMFUL_MIMETYPES, UPLOAD_FOLDER } from '@utils/constants'
 config()
 
 // Storage configuration
 const storage = diskStorage({
-  destination: process.env.UPLOAD_FOLDER || 'uploads/',
+  destination: UPLOAD_FOLDER,
 
   filename: function(_, file, cb) {
     const { ext, name } = separate_extension(file.originalname)
     const timestamp = Date.now()
-    const id = generate_id()  // Random id, as to tackle potential collisions
+    const id = generate_id().replace('-', '_')    // Random id, as to tackle potential collisions
 
     // Format -> name-timestamp-id.ext --> Universally unique identifier
-    cb(null, `${name}-${timestamp}-${id}.${ext}`)
+    cb(null, `${name.replace('-', '_')}-${timestamp}-${id}.${ext}`)
   }
 })
 

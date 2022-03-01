@@ -6,16 +6,14 @@ config()
 const folder = process.env.UPLOAD_FOLDER || 'uploads'
 
 /**
-   * Remove a file, if it has expired.
-   * @param {string} file path to file
-   */
+ * Remove a file, if it has expired.
+ * @param {string} file path to file
+ */
 function remove_if_expired(file) {
   if (!file) return
-  if (name_to_date(file) < Date.now()) {
-    unlink(`${folder}/${file}`, (err) => {
-      if (err) console.log('Error removing file', err)
-    })
-  }
+  const parts = file.split('-')
+  if (parts.length === 4 && name_to_date(file) > Date.now()) return
+  unlink(`${folder}/${file}`, (err) => err && console.log(err))
 }
 
 /**
@@ -24,7 +22,7 @@ function remove_if_expired(file) {
  * @returns {number} unix timestamp
  */
 function name_to_date(filename) {
-  const [, end] = filename.split('-')
+  const [end,] = filename.split('-').reverse()
   const [timestamp,] = end.split('.')
   return Number(timestamp)
 }
