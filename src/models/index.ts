@@ -2,6 +2,7 @@ import { connect, connection } from 'mongoose'
 import { MongoMemoryServer } from 'mongodb-memory-server'
 import Url from './url'
 import Text from './text'
+import Image from './image'
 
 
 export async function mock_db() {
@@ -14,4 +15,4 @@ export async function mock_db() {
     })
 }
 
-export { Text as TextModel, Url as UrlModel }
+export { Image as ImageModel, Text as TextModel, Url as UrlModel }
