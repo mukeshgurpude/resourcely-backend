@@ -1,3 +1,6 @@
+import { config } from 'dotenv'
+config()
+
 const BASE_PATHS = {
   shortener: '/shortener',
   text: '/text',
@@ -11,5 +14,6 @@ const EXPIRE_TIME = 1000*60*5
 
 const HARMFUL_MIMETYPES = []
 const HARMFUL_EXTENSIONS = []
+const UPLOAD_FOLDER = process.env.UPLOAD_FOLDER || 'uploads'
 
-export { BASE_PATHS, EXPIRE_TIME, HARMFUL_EXTENSIONS, HARMFUL_MIMETYPES, SHORTCODE_PREFIXES }
+export { BASE_PATHS, EXPIRE_TIME, HARMFUL_EXTENSIONS, HARMFUL_MIMETYPES, SHORTCODE_PREFIXES, UPLOAD_FOLDER }
