@@ -3,7 +3,7 @@ import store_file, { combine_name_time } from '@src/middlewares/store-file'
 import uploader from '@utils/uploader'
 import { ImageModel } from '@models'
 import { save_metadata } from '@src/middlewares/metadata'
-import { hash } from '@utils/hash'
+import { hash, compare } from '@utils/hash'
 import { EXPIRE_TIME } from '@utils/constants'
 
 const imageRouter = Router()
@@ -49,5 +49,29 @@ imageRouter.route('/')
       res.locals.delete_array = [req.file.path]
     }).finally(next)
   }, store_file)
+
+imageRouter.get('/:shortcode', async (req, res) => {
+  const { shortcode } = req.params
+  const { meta } = req.query
+  const doc = await ImageModel.findOne({shortcode})
+  if (!doc) {
+    return res.status(404).json({ error: 'Image not found' })
+  }
+
+  let allowed = false
+  if (doc.password === null) allowed = true
+  else {
+    const { password } = req.headers
+    if (!password) return res.status(401).json({ error: 'Missing password' })
+    allowed = compare((password as string), doc.password)
+  }
+  if (allowed) {
+    if (meta) {
+      return res.json({title: doc.title, description: doc.description})
+    }
+    return res.sendFile(doc.image_path, {root: '.'})
+  }
+  return res.status(401).json({ error: 'Wrong password' })
+})
 
 export default imageRouter
