@@ -105,3 +105,6 @@ dist
 
 # jetbrains ide files
 /.idea
+
+# File uploads
+/uploads
