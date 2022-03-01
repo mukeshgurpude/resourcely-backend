@@ -9,7 +9,11 @@ config()
 
 const app = express()
 
-app.use(connectLogger(logger, {level: 'auto'}))
+app.use(connectLogger(logger, {
+  level: 'auto',
+  context: true,
+  format: ':status :method :url :response-timems'
+}))
 
 /* istanbul ignore if */
 if (process.env.NODE_ENV === 'production') app.use(helmet())
