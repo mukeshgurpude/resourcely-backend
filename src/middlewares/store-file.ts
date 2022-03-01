@@ -1,9 +1,12 @@
 import { RequestHandler } from 'express'
-import { rename } from 'fs'
+import { rename, unlink } from 'fs'
 import separate_extension from '@utils/name'
 
 /** Middleware to upload files in specific format */
 const store_file: RequestHandler = function(_, res, next) {
+  if (res.locals.delete_file) {
+    return res.locals.delete_array.forEach((file:string) => unlink(file, err => err && console.error(err)))
+  }
   const { new_filename, old_filename } = res.locals.after_upload
   rename(old_filename, new_filename, next)
 }
