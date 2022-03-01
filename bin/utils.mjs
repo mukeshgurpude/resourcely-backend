@@ -12,8 +12,6 @@ const folder = process.env.UPLOAD_FOLDER || 'uploads'
 function remove_if_expired(file) {
   if (!file) return
   const parts = file.split('-')
-  console.log(new Date(name_to_date(file)).toLocaleString())
-  console.log(new Date().toLocaleString())
   if (parts.length === 4 && name_to_date(file) > Date.now()) return
   unlink(`${folder}/${file}`, (err) => err && console.log(err))
 }
