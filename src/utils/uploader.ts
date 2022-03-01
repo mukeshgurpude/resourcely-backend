@@ -1,4 +1,7 @@
-/* See https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html */
+/*
+  See https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html
+  Source: https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/File_Upload_Cheat_Sheet.md
+*/
 
 import multer, { diskStorage, FileFilterCallback } from 'multer'
 import { Request } from 'express'
