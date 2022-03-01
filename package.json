@@ -2,6 +2,9 @@
   "name": "resourcely",
   "version": "0.2.1",
   "description": "",
+  "bin": {
+    "cleanup": "./bin/cleanup.mjs"
+  },
   "scripts": {
     "build": "tsc && tsc-alias",
     "dev": "nodemon -r tsconfig-paths/register src/server.ts",
