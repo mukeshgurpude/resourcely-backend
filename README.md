@@ -28,13 +28,12 @@ API for sharing media or data on the internet.
 ---
 
 ## npm scripts
-* `build`: Compiles the typescript files
-* `dev`: Starts development server in watch mode
-* `lint`: Lints the source files with eslint
-* `lint:fix`: Lints the source files, and automatically fixes the fixable issues
-* `start`: Start the server with compiled files
-* `test`: Runs the test suite
-* `test:coverage`: Runs the test suite and generates a coverage report
-* `test:watch`: Starts the test suite in watch mode
-
-Run any of the above scripts with `npm run <script>`
+* `npm run build`: Compiles the typescript files
+* `npm run dev`: Starts development server in watch mode
+* `npm run lint`: Lints the source files with eslint
+* `npm run lint:fix`: Lints the source files, and automatically fixes the fixable issues
+* `npm start`: Start the server with compiled files
+* `npm test`: Runs the test suite
+* `npm run test:coverage`: Runs the test suite and generates a coverage report
+* `npm run test:watch`: Starts the test suite in watch mode
+* `npx cleanup`: Cleans up uploads folder (Delete expired files)
