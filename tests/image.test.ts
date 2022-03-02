@@ -113,6 +113,15 @@ suite('Image uploader API', () => {
           assert.isTrue(res.unauthorized)
         })
     })
+    test('Rejects wrong password', async () => {
+      return chai.request(app)
+        .get(`/api/v1${BASE_PATHS.image}/${shortcode}`)
+        .set('password', 'wrong')
+        .then(res => {
+          assert.ok(res)
+          assert.isTrue(res.unauthorized)
+        })
+    })
     test('File is served properly', async () => {
       return chai.request(app)
         .get(`/api/v1${BASE_PATHS.image}/${shortcode}`)

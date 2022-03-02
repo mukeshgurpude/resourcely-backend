@@ -115,6 +115,15 @@ suite('File uploader API', () => {
           assert.isTrue(res.unauthorized)
         })
     })
+    test('Rejects wrong password', async () => {
+      return chai.request(app)
+        .get(`${url}/${shortcode}`)
+        .set('password', 'wrong')
+        .then(res => {
+          assert.ok(res)
+          assert.isTrue(res.unauthorized)
+        })
+    })
     test('File is served properly', async () => {
       return chai.request(app)
         .get(`${url}/${shortcode}`)
