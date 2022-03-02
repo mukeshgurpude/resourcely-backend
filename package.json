@@ -12,9 +12,9 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "prebuild": "npm run lint:fix",
     "start": "npm run build && node dist/src/server.js",
-    "test": "mocha --config .mocharc.json tests/*.test.{js,ts}",
-    "test:coverage": "nyc mocha --config .mocharc.json tests/*.test.{js,ts}",
-    "test:watch": "mocha --config .mocharc.json --watch tests/*.test.{js,ts}"
+    "test": "mocha --config .mocharc.json",
+    "test:coverage": "nyc mocha --config .mocharc.json",
+    "test:watch": "mocha --config .mocharc.json --watch"
   },
   "repository": {
     "type": "git",
