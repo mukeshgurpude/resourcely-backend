@@ -44,6 +44,15 @@ suite('Image uploader API', () => {
           assert.strictEqual(initial, valid_uploads())
         })
     })
+
+    test('Non existent file',async () => {
+      return chai.request(app)
+        .get(`/api/v1${BASE_PATHS.image}/non-existent`)
+        .then(res => {
+          assert.isTrue(res.notFound)
+          assert.property(res, 'error')
+        })
+    })
   })
 
   suite('Unencrypted upload', () => {
