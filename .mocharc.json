@@ -1,5 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/mocharc",
+  "bail": true,
   "exit": true,
   "recursive": true,
   "require": [
