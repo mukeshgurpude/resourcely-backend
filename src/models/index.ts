@@ -3,6 +3,7 @@ import { MongoMemoryServer } from 'mongodb-memory-server'
 import Url from './url'
 import Text from './text'
 import Image from './image'
+import File from './file'
 
 
 export async function mock_db() {
@@ -15,4 +16,4 @@ export async function mock_db() {
     })
 }
 
-export { Image as ImageModel, Text as TextModel, Url as UrlModel }
+export { File as FileModel, Image as ImageModel, Text as TextModel, Url as UrlModel }

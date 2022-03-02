@@ -1,11 +1,16 @@
 {
   "$schema": "https://json.schemastore.org/mocharc",
+  "bail": true,
+  "check-leaks": true,
   "exit": true,
   "recursive": true,
   "require": [
     "tsconfig-paths/register",
     "ts-node/register"
   ],
+  "spec": "tests/**/*.{test,spec}.{js,ts}",
+  "retries": 1,
+  "timeout": 5000,
   "ui": "tdd",
   "watch-files": [
     "src/**/*.ts",
