@@ -9,7 +9,6 @@ import app from '@src/app'
 const password = '123456'
 
 chai.use(chaiHttp)
-let initial = valid_uploads()
 suite('Image uploader API', () => {
   before(mock_db)
   suite('Malformed requests', () => {
@@ -34,6 +33,7 @@ suite('Image uploader API', () => {
     })
 
     test('Invalid file input', async () => {
+      const initial = valid_uploads()
       return chai.request(app)
         .post(`/api/v1${BASE_PATHS.image}`)
         .field('title', 'test')
@@ -49,6 +49,7 @@ suite('Image uploader API', () => {
   suite('Unencrypted upload', () => {
     let shortcode!: string
     test('Upload image', async () => {
+      let initial = valid_uploads()
       return chai.request(app)
         .post(`/api/v1${BASE_PATHS.image}`)
         .field('title', 'test')
@@ -82,6 +83,7 @@ suite('Image uploader API', () => {
   suite('Encrypted upload', () => {
     let shortcode!: string
     test('Upload image', async () => {
+      let initial = valid_uploads()
       return chai.request(app)
         .post(`/api/v1${BASE_PATHS.image}`)
         .field('title', 'test')
