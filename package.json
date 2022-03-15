@@ -1,7 +1,7 @@
 {
   "name": "resourcely",
   "version": "0.3.0",
-  "description": "",
+  "description": "Centralized resource management",
   "bin": {
     "cleanup": "./bin/cleanup.mjs"
   },

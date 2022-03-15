@@ -1,23 +1,13 @@
-import { connect } from 'mongoose'
+import connect_db from '@models'
 import app from './app'
+import { logger } from '@utils/index'
 
 
-console.debug('Connecting to MongoDB...')
+logger.debug('Connecting to MongoDB...')
 connect_db()
   .then(() => {
-    console.debug('Connected to MongoDB\nStarting server...')
+    logger.debug('Connected to MongoDB --> Starting server...')
     app.listen(process.env.PORT || 3000, function() {
-      console.log(`Server is running on port ${this.address().port}`)
+      logger.info(`Server is running on port ${this.address().port}`)
     })
   })
-
-export default async function connect_db() {
-  return connect(process.env.MONGO_URL)
-    .catch(err => {
-      console.error('Error connecting to MongoDB... Find more details below')
-      console.log('*'.repeat(50))
-      console.error(err)
-      console.log('*'.repeat(50))
-      process.exit(1)
-    })
-}

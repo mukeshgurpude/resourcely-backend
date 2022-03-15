@@ -3,7 +3,7 @@ import helmet from 'helmet'
 import { connectLogger } from 'log4js'
 import apiRouter from '@routes/index'
 import { config } from 'dotenv'
-import logger from '@utils/logger'
+import { logger } from '@utils/index'
 
 config()
 
@@ -22,8 +22,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 app.use('/api/v1', apiRouter)
-app.get('/status', (req, res) => {
-  res.status(200).send('Ok')
-})
+app.get('/status', (_, res) => { res.status(200).send('Ok')})
 
 export default app

@@ -1,5 +1,6 @@
 import { connect, connection } from 'mongoose'
 import { MongoMemoryServer } from 'mongodb-memory-server'
+import { logger } from '@utils/index'
 import Url from './url'
 import Text from './text'
 import Image from './image'
@@ -13,6 +14,17 @@ export async function mock_db() {
       if (connection.readyState === 0) { // Connect only if not already connected
         await connect(instance.getUri(), {dbName: 'resourcely-test'})
       }
+    })
+}
+
+export default async function connect_db() {
+  return connect(process.env.MONGO_URL)
+    .catch(err => {
+      logger.error('Error connecting to MongoDB... Find more details below')
+      logger.info('*'.repeat(50))
+      logger.error(err)
+      logger.info('*'.repeat(50))
+      process.exit(1)
     })
 }
 
