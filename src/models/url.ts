@@ -1,7 +1,7 @@
 import { model, models } from 'mongoose'
 import IUrl from '@ctypes/url'
 import schema_factory from './base'
-import { SHORTCODE_PREFIXES } from '@src/utils/constants'
+import { SHORTCODE_PREFIXES } from '@utils/constants'
 
 const urlSchema = schema_factory<IUrl>({
   original_url: { type: String, required: true },

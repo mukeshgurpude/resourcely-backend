@@ -3,7 +3,7 @@ import urlRouter from './url'
 import textRouter from './text'
 import imageRouter from './image'
 import fileRouter from './file'
-import { BASE_PATHS } from '@src/utils/constants'
+import { BASE_PATHS } from '@utils/constants'
 
 const apiRouter = Router()
 

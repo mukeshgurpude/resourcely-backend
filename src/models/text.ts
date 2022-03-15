@@ -1,6 +1,6 @@
 import { model, models } from 'mongoose'
 import IText from '@ctypes/text'
-import schema_factory from '@src/models/base'
+import schema_factory from '@models/base'
 import { SHORTCODE_PREFIXES } from '@utils/constants'
 
 const text_schema = schema_factory<IText>({
