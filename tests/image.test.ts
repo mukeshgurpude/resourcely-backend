@@ -1,10 +1,10 @@
-import { readdirSync } from 'fs'
 import { before } from 'mocha'
 import chai, { assert } from 'chai'
 import chaiHttp from 'chai-http'
-import { BASE_PATHS, UPLOAD_FOLDER } from '@utils/constants'
+import { BASE_PATHS } from '@utils/constants'
 import { mock_db } from '@models'
 import app from '@src/app'
+import { valid_uploads } from './utils'
 
 const password = '123456'
 
@@ -143,9 +143,3 @@ suite('Image uploader API', () => {
     })
   })
 })
-
-function valid_uploads() {
-  const files = readdirSync(UPLOAD_FOLDER, {withFileTypes: true})
-    .filter(dirent => dirent.isFile())
-  return files.filter(file => file.name.split('-').length === 4).length
-}

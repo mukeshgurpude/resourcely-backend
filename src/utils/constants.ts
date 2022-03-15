@@ -1,4 +1,5 @@
 import { config } from 'dotenv'
+import is_test_env from 'is-test-env'
 config()
 
 const BASE_PATHS = {
@@ -17,6 +18,6 @@ const HARMFUL_MIMETYPES = []
 const HARMFUL_EXTENSIONS = []
 
 /* istanbul ignore next */
-const UPLOAD_FOLDER = process.env.UPLOAD_FOLDER || 'uploads'
+const UPLOAD_FOLDER = is_test_env() ? 'uploads_tests' : process.env.UPLOAD_FOLDER || 'uploads'
 
 export { BASE_PATHS, EXPIRE_TIME, HARMFUL_EXTENSIONS, HARMFUL_MIMETYPES, SHORTCODE_PREFIXES, UPLOAD_FOLDER }

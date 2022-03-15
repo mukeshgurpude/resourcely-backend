@@ -7,7 +7,7 @@ import { EXPIRE_TIME } from '@utils/constants'
 const urlRouter = Router()
 
 urlRouter.route('/')
-  .get((req, res) => {
+  .get((_, res) => {
     res.status(200).send('Url shortener function')
   })
   .post((req, res) => {
@@ -27,9 +27,7 @@ urlRouter.route('/')
         original_url: response.original_url,
         shortcode: response.shortcode
       })
-    }).catch(err => {
-      return res.status(500).json({error: err})
-    })
+    }).catch(error => res.status(500).json({ error }))
   })
 
 urlRouter.get('/:code', async (req, res) => {
@@ -38,17 +36,13 @@ urlRouter.get('/:code', async (req, res) => {
 
   const url = await UrlModel.findOne({shortcode: code})
   if (!url) {
-    return res.status(404).json({
-      error: 'URL not found'
-    })
+    return res.status(404).json({ error: 'URL not found' })
   }
   let allowed = false
   if (url.password === null) allowed = true
   else {
     const { password } = req.headers
-    if (!password) return res.status(401).json({
-      error: 'Missing password'
-    })
+    if (!password) return res.status(401).json({ error: 'Missing password' })
     allowed = compare((password as string), url.password)
   }
 
@@ -59,15 +53,11 @@ urlRouter.get('/:code', async (req, res) => {
     case 'text':
       return res.status(200).send(url.original_url)
     default:
-      return res.status(200).json({
-        original_url: url.original_url
-      })
+      return res.status(200).json({ original_url: url.original_url })
     }
   }
   // Not allowed: Wrong password
-  return res.status(401).json({
-    error: 'Wrong password'
-  })
+  return res.status(401).json({ error: 'Wrong password' })
 })
 
 export default urlRouter

@@ -3,7 +3,7 @@ import chai, { assert } from 'chai'
 import chaiHttp from 'chai-http'
 import app from '@src/app'
 import { mock_db } from '@models'
-import { BASE_PATHS } from '@src/utils/constants'
+import { BASE_PATHS } from '@utils/constants'
 
 const text = `
 import sys

@@ -1,5 +1,6 @@
 import { config } from 'dotenv'
 import { configure, getLogger, Logger } from 'log4js'
+import is_test_env from 'is-test-env'
 
 config()
 
@@ -17,22 +18,10 @@ configure({
 
 let logger!: Logger
 /* istanbul ignore next */
-if (process.env.NODE_ENV === 'production' || is_mocha_env()) {
+if (process.env.NODE_ENV === 'production' || is_test_env()) {
   logger = getLogger('file_logger') // Use file logger in production and mocha tests
 } else {
-  logger = getLogger('default') // In development log to console
+  logger = getLogger('default') // In development log to console and file both
 }
 
 export default logger
-
-/* istanbul ignore next */
-export function is_mocha_env(): boolean {
-  // Check if we're running in TEST or CI environment
-  if (process.env.NODE_ENV) return process.env.NODE_ENV === 'test'
-  try {
-    // Mocha defines global suite function
-    if (typeof suite === 'function') return true
-  } catch {
-    return false
-  }
-}
