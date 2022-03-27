@@ -4,10 +4,13 @@ import { connectLogger } from 'log4js'
 import apiRouter from '@routes/index'
 import { config } from 'dotenv'
 import { logger } from '@utils/index'
+import cors from 'cors'
 
 config()
 
 const app = express()
+
+app.use(cors({origin: process.env.FRONTEND_ORIGIN}))
 
 app.use(connectLogger(logger, {
   level: 'auto',

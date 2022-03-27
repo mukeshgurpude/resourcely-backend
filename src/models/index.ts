@@ -17,6 +17,7 @@ export async function mock_db() {
     })
 }
 
+/* istanbul ignore next */
 export default async function connect_db() {
   return connect(process.env.MONGO_URL)
     .catch(err => {
